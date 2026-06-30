@@ -7,5 +7,5 @@ public class UpdateAgendaRequest {
 
     private String title;
     private String username;
-
+    private String password;
 }

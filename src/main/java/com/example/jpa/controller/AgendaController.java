@@ -23,17 +23,18 @@ public class AgendaController {
     }
 
     @GetMapping("/agendas")
-    public List<GetOneAgendaResponse> getAllAgendas(String username) {
+    public List<GetOneAgendaResponse> getAllAgendas(@RequestParam(required = false) String username) {
         return agendaService.getAll(username);
     }
 
-    @PutMapping("/agendas{agendaId}")
+    @PutMapping("/agendas/{agendaId}")
     public UpdateAgendaResponse update (@PathVariable Long agendaId, @RequestBody UpdateAgendaRequest request) {
         return agendaService.update(agendaId, request);
     }
 
-    @DeleteMapping("/agendas{agendaId}")
+    @DeleteMapping("/agendas/{agendaId}")
     public void delete (@PathVariable Long agendaId, @RequestBody DeleteAgendaRequest request) {
         agendaService.delete(agendaId, request);
+
     }
 }

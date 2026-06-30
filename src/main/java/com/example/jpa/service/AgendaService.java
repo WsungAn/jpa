@@ -76,6 +76,9 @@ public class AgendaService {
         Agenda agenda = agendaRepository.findById(agendaId).orElseThrow(
                 () -> new IllegalStateException("없는 일정입니다.")
         );
+        if (!agenda.getPassword().equals(request.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
         agenda.update(
                 request.getTitle(),
                 request.getUsername()
@@ -86,6 +89,7 @@ public class AgendaService {
                 agenda.getContent(),
                 agenda.getUsername()
         );
+
     }
 
     @Transactional
@@ -94,6 +98,12 @@ public class AgendaService {
         if (!existence) {
             throw new IllegalArgumentException("없는 일정입니다.");
         }
-        agendaRepository.deleteById(agendaId);
+
+        Agenda agenda = agendaRepository.findById(agendaId).get();
+
+        if (!agenda.getPassword().equals(request.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }agendaRepository.delete(agenda);
+
     }
 }

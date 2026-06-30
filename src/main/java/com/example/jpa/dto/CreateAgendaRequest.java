@@ -8,5 +8,5 @@ public class CreateAgendaRequest {
     private String title;
     private String content;
     private String username;
-    private Long password;
+    private String password;
 }

@@ -22,13 +22,13 @@ public class Agenda extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String username;
     @Column(nullable = false, length = 100)
-    private Long password;
+    private String password;
     @Column(nullable = false, length = 100)
     LocalDateTime createdAt;
     @Column(nullable = false, length = 100)
     LocalDateTime modifiedAt;
 
-    public Agenda(String title, String content, String username, Long password) {
+    public Agenda(String title, String content, String username, String password) {
         this.title = title;
         this.content = content;
         this.username = username;
