@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 
-
-    List<Agenda> username(String username);
-
     List<Agenda> findByUsernameOrderByModifiedAtDesc(String username);
-
 
 }

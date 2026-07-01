@@ -54,9 +54,15 @@ public class AgendaService {
 
     @Transactional(readOnly = true)
     public List<GetOneAgendaResponse> getAll(String username) {
-        List<Agenda> agendas = agendaRepository.findByUsernameOrderByModifiedAtDesc(username);
+        List<Agenda> agendas;
+        if (username == null || username.isBlank()) {
+            agendas = agendaRepository.findAll();
+        } else {
+            agendas = agendaRepository.findByUsernameOrderByModifiedAtDesc(username);
+        }
 
         List<GetOneAgendaResponse> dtos = new ArrayList<>();
+
         for (Agenda agenda : agendas) {
             GetOneAgendaResponse dto = new GetOneAgendaResponse(
                     agenda.getId(),
